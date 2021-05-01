@@ -99,6 +99,8 @@ interface CalendarEventBase {
   description?: string;
   /** iOS ONLY - The time zone associated with the event */
   timeZone?: string;
+  /** iOS ONLY - https://developer.apple.com/documentation/eventkit/ekcalendaritem/1507283-calendaritemexternalidentifier */
+  calendarItemExternalIdentifier?: string
 }
 
 export interface CalendarEventReadable extends CalendarEventBase {

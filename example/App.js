@@ -126,6 +126,33 @@ const App: () => React$Node = () => {
               </Text>
             </View>
           </View>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Calendar Events</Text>
+            <Text style={styles.sectionDescription}>
+              <Button
+                title="Find calendar events"
+                onPress={() => {
+                  RNCalendarEvents.fetchAllEvents(new Date().toISOString(), new Date(Date.now() + 7 * 24 * 60 * 1000 * 60).toISOString()).then(
+                    (result) => {
+                      console.log('calendarItemExternalIdentifier', result.map(({calendarItemExternalIdentifier}) => calendarItemExternalIdentifier))
+                      Alert.alert(
+                        'Calendar Events',
+                        result
+                          .reduce((acc, cal) => {
+                            acc.push(cal.title);
+                            return acc;
+                          }, [])
+                          .join('\n'),
+                      );
+                    },
+                    (result) => {
+                      console.error(result);
+                    },
+                  );
+                }}
+              />
+            </Text>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </>

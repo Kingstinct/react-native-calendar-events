@@ -10,6 +10,7 @@
 static NSString *const _id = @"id";
 static NSString *const _calendarId = @"calendarId";
 static NSString *const _title = @"title";
+static NSString *const _calendarItemExternalIdentifier = @"calendarItemExternalIdentifier";
 static NSString *const _location = @"location";
 static NSString *const _startDate = @"startDate";
 static NSString *const _endDate = @"endDate";
@@ -520,6 +521,7 @@ RCT_EXPORT_MODULE()
                                          _alarms: [NSArray array],
                                          _attendees: [NSArray array],
                                          _recurrence: @"",
+                                         _calendarItemExternalIdentifier: @"",
                                          _recurrenceRule: @{
                                                  @"frequency": @"",
                                                  @"interval": @"",
@@ -541,6 +543,10 @@ RCT_EXPORT_MODULE()
 
     if (event.calendarItemIdentifier) {
         [formedCalendarEvent setValue:event.calendarItemIdentifier forKey:_id];
+    }
+
+    if(event.calendarItemExternalIdentifier) {
+        [formedCalendarEvent setValue:event.calendarItemExternalIdentifier forKey:_calendarItemExternalIdentifier];
     }
 
     if (event.calendar) {
